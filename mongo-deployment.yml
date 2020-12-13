@@ -18,9 +18,14 @@ spec:
       labels:
         app: mongo
     spec:
+      #schedulerName: stork
       containers:
       - name: mongo
         image: mongo
         imagePullPolicy: IfNotPresent
         ports:
             - containerPort: 27017
+      volumes:
+      - name: mongodb
+        persistentVolumeClaim:
+          claimName: mongo-pvc
