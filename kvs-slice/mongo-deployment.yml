@@ -27,18 +27,16 @@ spec:
           mountPath: /data/db
         ports:
             - containerPort: 27017
+        volumeMounts:
+        - name: mongodb-data
+          mountPath: /data/db
 
       - name: mongo-api
         image: mike04/mongoslice:latest
         ports:
             - containerPort: 8083
 
-              #      - name: nginx
-              #image: nginx:latest
-              #ports:
-              #- containerPort: 80
-
       volumes:
-      - name: mongodb
+      - name: mongodb-data
         persistentVolumeClaim:
           claimName: mongo-pvc
