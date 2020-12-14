@@ -18,13 +18,26 @@ spec:
       labels:
         app: mongo
     spec:
-      #schedulerName: stork
       containers:
       - name: mongo
         image: mongo
         imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: mongodb-data
+          mountPath: /data/db
         ports:
             - containerPort: 27017
+
+      - name: mongo-api
+        image: mike04/mongoslice:latest
+        ports:
+            - containerPort: 8083
+
+              #      - name: nginx
+              #image: nginx:latest
+              #ports:
+              #- containerPort: 80
+
       volumes:
       - name: mongodb
         persistentVolumeClaim:
