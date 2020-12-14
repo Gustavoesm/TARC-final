@@ -9,6 +9,10 @@ spec:
   selector:
     app: mongo
   ports:
-    - protocol: TCP
-      port: 8083
+    - name: mongo-api
+      port: 80
       targetPort: 8083
+      
+    - name: mongo-mongo
+      port: 27017
+      targetPort: 27017
