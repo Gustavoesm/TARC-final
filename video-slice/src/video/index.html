@@ -30,13 +30,11 @@
         } else if (tempo > 20 && tempo <= 30 && intervalo !== 2) {
             intervalo = 2;
             decrease()
-        } else if (tempo > 30 && tempo <= 40 && intervalo !== 3) {
-            intervalo = 3;
             decrease()
             decrease()
-        } else if (tempo > 40 && intervalo !== 4) {
-            intervalo = 4;
-            increase()
+            decrease()
+            decrease()
+            decrease()
         }
 
     }, 1000);
@@ -49,7 +47,7 @@
 
     function increase() {
         var http = new XMLHttpRequest();
-        var url = 'http://35.223.39.106:8082/increase_replicas';
+        var url = 'http://35.239.139.221:8082/increase_replicas';
         http.open('POST', url, true);
 
         //Send the proper header information along with the request
@@ -65,7 +63,7 @@
 
     function decrease() {
         var http = new XMLHttpRequest();
-        var url = 'http://35.223.39.106:8082/decrease_replicas';
+        var url = 'http://35.239.139.221:8082/decrease_replicas';
         http.open('POST', url, true);
 
         //Send the proper header information along with the request

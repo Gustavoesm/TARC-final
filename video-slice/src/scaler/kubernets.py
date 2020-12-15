@@ -5,12 +5,12 @@ import os
 DEPLOYMENT_NAME = "nginx-deployment"
 
 @post('/increase_replicas')
-def alterar_replicas(num_replicas):
+def aumentar_replicas():
     os.system("./increase.sh")
     return "sucesso"
 
 @post('/decrease_replicas')
-def alterar_replicas(num_replicas):
+def reduzir_replicas():
     os.system("./decrease.sh")
     return "sucesso"
 
