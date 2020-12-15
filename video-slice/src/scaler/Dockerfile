@@ -11,6 +11,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+RUN chmod +x increase.sh && chmod +x decrease.sh
+
 RUN chmod +x script.sh && ./script.sh
 
 CMD [ "python", "./kubernets.py" ]

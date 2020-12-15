@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-scaler-deployment
+  labels:
+    app: api-scaler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-scaler
+  template:
+    metadata:
+      labels:
+        app: api-scaler
+    spec:
+      containers:
+      - name: api-video-scaler
+        image: mike04/api-video-scaler:latest
+        ports:
+        - containerPort: 8082

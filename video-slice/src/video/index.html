@@ -17,21 +17,26 @@
     setInterval(function(){
         
         var tempo = getCurTime();
-        if (tempo >= 0 && tempo <= 70 && intervalo !== 0) {
+        if (tempo >= 0 && tempo <= 10 && intervalo !== 0) {
             intervalo = 0;
-            changeNumReplicas(3)
-        } else if (tempo > 70 && tempo <= 140 && intervalo !== 1) {
+            increase()
+            increase()
+            increase()
+        } else if (tempo > 10 && tempo <= 20 && intervalo !== 1) {
             intervalo = 1;
-            changeNumReplicas(5)
-        } else if (tempo > 140 && tempo <= 240 && intervalo !== 2) {
+            increase()
+            increase()
+            increase()
+        } else if (tempo > 20 && tempo <= 30 && intervalo !== 2) {
             intervalo = 2;
-            changeNumReplicas(2)
-        } else if (tempo > 240 && tempo <= 400 && intervalo !== 3) {
+            decrease()
+        } else if (tempo > 30 && tempo <= 40 && intervalo !== 3) {
             intervalo = 3;
-            changeNumReplicas(1)
-        } else if (tempo > 400 && intervalo !== 4) {
+            decrease()
+            decrease()
+        } else if (tempo > 40 && intervalo !== 4) {
             intervalo = 4;
-            changeNumReplicas(4)
+            increase()
         }
 
     }, 1000);
@@ -42,9 +47,9 @@
         return vid.currentTime;
     }
 
-    function changeNumReplicas(num_replicas) {
+    function increase() {
         var http = new XMLHttpRequest();
-        var url = 'http://35.223.39.106:8082/num_replicas/' + num_replicas;
+        var url = 'http://35.223.39.106:8082/increase_replicas';
         http.open('POST', url, true);
 
         //Send the proper header information along with the request
@@ -52,7 +57,23 @@
 
         http.onreadystatechange = function() {//Call a function when the state changes.
             if(http.readyState == 4 && http.status == 200) {
-                console.log("Numero de replicar alterad para " + num_replicas)
+                console.log("Numero de replicas incrementado")
+            }
+        }
+        http.send();
+    }
+
+    function decrease() {
+        var http = new XMLHttpRequest();
+        var url = 'http://35.223.39.106:8082/decrease_replicas';
+        http.open('POST', url, true);
+
+        //Send the proper header information along with the request
+        http.setRequestHeader('Content-type', 'application/text');
+
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                console.log("Numero de replicas decrementado")
             }
         }
         http.send();
